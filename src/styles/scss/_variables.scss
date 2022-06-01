@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+
+$clr-bright-blue: hsl(220, 98%, 61%);
+$clr-gradient: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
+
+// LIGTH
+$clr-white-100: hsl(0, 0%, 98%); // light elements
+$clr-white-75: hsl(236, 33%, 92%); // BG
+$clr-white-50: hsl(233, 11%, 84%);
+$clr-grayish-blue-100: hsl(236, 9%, 61%);
+$clr-grayish-Blue-50: hsl(235, 19%, 35%);
+
+// DARK
+$clr-dark-blue-100: hsl(235, 21%, 11%); // BG
+$clr-dark-blue-75: hsl(235, 24%, 19%); // Dark elements
+$clr-grayish-blue-100: hsl(234, 11%, 52%);
+$clr-grayish-blue-75: hsl(234, 39%, 85%);
+$clr-grayish-blue-50: hsl(236, 33%, 92%); // hover
+$clr-dark-grayish-blue: hsl(233, 14%, 35%);
+$clr-Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+$boxshadow-dark: 0px 0px 5px 1px rgba(0, 0, 0, 0.8);
+$ff-Josefin-Sans: "Josefin Sans", sans-serif;
+
+$max-width: 900px;
+$min-width: 300px;

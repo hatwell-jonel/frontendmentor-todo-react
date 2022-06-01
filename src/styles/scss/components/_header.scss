@@ -1,0 +1,43 @@
+.header {
+  min-width: $min-width;
+  color: $clr-white-100;
+  background: url("/public/images/bg-mobile-dark.jpg") no-repeat center/cover;
+  height: 185px;
+  @include breakpoint(sm) {
+    background: url("/public/images/bg-desktop-dark.jpg") no-repeat center/cover;
+    height: 220px;
+  }
+
+  @include breakpoint(md) {
+    height: 260px;
+  }
+
+  .container {
+    @include flex(row, space-between, center);
+    width: 90%;
+    max-width: $max-width;
+    // margin-top: 1.5rem;
+    padding-top: 2rem;
+
+    .logo {
+      pointer-events: none;
+      letter-spacing: 5px;
+      font-size: 1.7rem;
+    }
+
+    .theme-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: $clr-white-100;
+      background-color: transparent;
+      border: none;
+      font-size: 1.4rem;
+
+      span {
+        font-size: 0.7rem;
+        margin-left: 4px;
+      }
+    }
+  }
+}

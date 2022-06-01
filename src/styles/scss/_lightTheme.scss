@@ -1,0 +1,209 @@
+.light-theme {
+  background-color: $clr-white-75 !important;
+
+  .header {
+    background: url("/public/images/bg-mobile-light.jpg") no-repeat center/cover;
+
+    @include breakpoint(sm) {
+      background: url("/public/images/bg-desktop-light.jpg") no-repeat
+        center/cover;
+    }
+  }
+
+  .authentication {
+    .container {
+      form {
+        // CHANGEABLE
+        background-color: $clr-white-75;
+        label {
+          // CHANGEABLE
+          color: $clr-dark-blue-75;
+        }
+
+        .or {
+          // CHANGEABLE
+          color: $clr-dark-blue-75;
+        }
+
+        .input-container {
+          .input-group {
+            .signin-btn {
+              // CHANGEABLE
+              background-color: $clr-bright-blue;
+              color: $clr-white-100;
+              &:hover {
+                background-color: darken($clr-bright-blue, 10%);
+              }
+            }
+
+            input {
+              // CHANGEABLE
+              background-color: transparent;
+              border-bottom: 1px solid $clr-dark-blue-75;
+              color: $clr-dark-blue-100;
+              caret-color: $clr-dark-blue-75;
+
+              &:focus {
+                border-bottom: 1px solid $clr-bright-blue;
+                & ~ * {
+                  color: $clr-bright-blue;
+                }
+              }
+            }
+
+            .icon {
+              // CHANGEABLE
+              color: $clr-dark-blue-75;
+            }
+          }
+        }
+
+        .user_account {
+          // CHANGEABLE
+          color: $clr-dark-blue-75;
+
+          .LINK {
+            text-decoration: underline;
+            color: $clr-bright-blue;
+          }
+        }
+
+        .login_with {
+          width: 80%;
+          margin: 0 auto;
+
+          &-btn {
+            .icon {
+              margin-right: 0.3rem;
+            }
+          }
+
+          button {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            font-size: 0.85rem;
+            border: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  #todo_container {
+    .add_new_todo {
+      // CHANGEABLE
+      background-color: $clr-white-100;
+
+      .btn_container {
+        button {
+          // CHANGEABLE
+          border: 1px solid $clr-dark-blue-75;
+          background-color: transparent;
+          transition: 0.1s ease !important;
+
+          &:hover {
+            transition: 0.1s ease !important;
+            background: linear-gradient(
+              to right,
+              hsl(192, 100%, 67%),
+              hsl(280, 87%, 65%)
+            );
+            border: 1px solid $clr-bright-blue;
+            color: white;
+          }
+        }
+      }
+
+      input {
+        //   CHANGEABLE
+        color: $clr-dark-blue-100;
+      }
+    }
+
+    .todo_list {
+      //   CHANGEABLE
+      background-color: $clr-white-100;
+
+      .todo_item {
+        // CHANGEABLE
+        border-bottom: 1px solid $clr-dark-blue-100;
+
+        &:hover {
+          background-color: $clr-bright-blue;
+          .btn_delete {
+            opacity: 1;
+          }
+        }
+
+        .btn_container {
+          .btn_circle {
+            // CHANGEABLE
+            border: 1px solid $clr-dark-blue-75;
+          }
+        }
+
+        .todo_text {
+          padding: 0.5rem 0.3rem;
+          flex: 2;
+          // CHANGEABLE
+          color: $clr-dark-blue-100;
+        }
+
+        .btn_delete {
+          // CHANGEABLE
+          color: $clr-dark-blue-100;
+        }
+      }
+    }
+  }
+
+  .filter_container {
+    // CHANGEABLE
+    background-color: $clr-white-100;
+
+    .items_left {
+      // CHANGEABLE
+      color: $clr-dark-blue-75;
+    }
+
+    .radio_button {
+      // CHANGEABLE
+      background-color: $clr-white-100;
+      @include breakpoint(sm) {
+        .radio_group {
+          label {
+            // CHANGEABLE
+            color: $clr-dark-blue-75;
+          }
+        }
+      }
+
+      .radio_group {
+        input {
+          &:checked {
+            & ~ label {
+              color: $clr-bright-blue;
+            }
+          }
+        }
+
+        label {
+          // CHANGEABLE
+          color: $clr-dark-blue-75;
+        }
+      }
+    }
+
+    .clear_done {
+      font-size: 1rem;
+      // CHANGEABLE
+      color: $clr-dark-blue-75;
+    }
+  }
+}

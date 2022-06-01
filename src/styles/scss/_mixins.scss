@@ -1,0 +1,26 @@
+@mixin breakpoint($breakpoints) {
+  @if $breakpoints == sm {
+    @media screen and (min-width: 600px) {
+      @content;
+    }
+  } @else if $breakpoints == md {
+    @media screen and (min-width: 900px) {
+      @content;
+    }
+  } @else if $breakpoints == lg {
+    @media screen and (min-width: 1200px) {
+      @content;
+    }
+  } @else if $breakpoints == xlg {
+    @media screen and (min-width: 1400px) {
+      @content;
+    }
+  }
+}
+
+@mixin flex($dir, $jc, $ai) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $jc;
+  align-items: $ai;
+}

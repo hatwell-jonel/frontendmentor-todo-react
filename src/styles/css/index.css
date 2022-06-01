@@ -1,0 +1,590 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+*,
+*::after,
+*::before {
+  transition: All 0.3s ease;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  background-color: #161722;
+  min-width: 300px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: lightblue;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+input:focus {
+  outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+button,
+.btn {
+  cursor: pointer;
+}
+
+.container {
+  margin: 0 auto;
+  width: 93%;
+  max-width: 900px;
+}
+
+.max-container {
+  width: 100%;
+}
+
+.light-theme {
+  background-color: #e4e5f1 !important;
+}
+.light-theme .header {
+  background: url("/public/images/bg-mobile-light.jpg") no-repeat center/cover;
+}
+@media screen and (min-width: 600px) {
+  .light-theme .header {
+    background: url("/public/images/bg-desktop-light.jpg") no-repeat center/cover;
+  }
+}
+.light-theme .authentication .container form {
+  background-color: #e4e5f1;
+}
+.light-theme .authentication .container form label {
+  color: #25273c;
+}
+.light-theme .authentication .container form .or {
+  color: #25273c;
+}
+.light-theme .authentication .container form .input-container .input-group .signin-btn {
+  background-color: #3a7bfd;
+  color: #fafafa;
+}
+.light-theme .authentication .container form .input-container .input-group .signin-btn:hover {
+  background-color: #0859fd;
+}
+.light-theme .authentication .container form .input-container .input-group input {
+  background-color: transparent;
+  border-bottom: 1px solid #25273c;
+  color: #161722;
+  caret-color: #25273c;
+}
+.light-theme .authentication .container form .input-container .input-group input:focus {
+  border-bottom: 1px solid #3a7bfd;
+}
+.light-theme .authentication .container form .input-container .input-group input:focus ~ * {
+  color: #3a7bfd;
+}
+.light-theme .authentication .container form .input-container .input-group .icon {
+  color: #25273c;
+}
+.light-theme .authentication .container form .user_account {
+  color: #25273c;
+}
+.light-theme .authentication .container form .user_account .LINK {
+  text-decoration: underline;
+  color: #3a7bfd;
+}
+.light-theme .authentication .container form .login_with {
+  width: 80%;
+  margin: 0 auto;
+}
+.light-theme .authentication .container form .login_with-btn .icon {
+  margin-right: 0.3rem;
+}
+.light-theme .authentication .container form .login_with button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 0.85rem;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+.light-theme #todo_container .add_new_todo {
+  background-color: #fafafa;
+}
+.light-theme #todo_container .add_new_todo .btn_container button {
+  border: 1px solid #25273c;
+  background-color: transparent;
+  transition: 0.1s ease !important;
+}
+.light-theme #todo_container .add_new_todo .btn_container button:hover {
+  transition: 0.1s ease !important;
+  background: linear-gradient(to right, #57ddff, #c058f3);
+  border: 1px solid #3a7bfd;
+  color: white;
+}
+.light-theme #todo_container .add_new_todo input {
+  color: #161722;
+}
+.light-theme #todo_container .todo_list {
+  background-color: #fafafa;
+}
+.light-theme #todo_container .todo_list .todo_item {
+  border-bottom: 1px solid #161722;
+}
+.light-theme #todo_container .todo_list .todo_item:hover {
+  background-color: #3a7bfd;
+}
+.light-theme #todo_container .todo_list .todo_item:hover .btn_delete {
+  opacity: 1;
+}
+.light-theme #todo_container .todo_list .todo_item .btn_container .btn_circle {
+  border: 1px solid #25273c;
+}
+.light-theme #todo_container .todo_list .todo_item .todo_text {
+  padding: 0.5rem 0.3rem;
+  flex: 2;
+  color: #161722;
+}
+.light-theme #todo_container .todo_list .todo_item .btn_delete {
+  color: #161722;
+}
+.light-theme .filter_container {
+  background-color: #fafafa;
+}
+.light-theme .filter_container .items_left {
+  color: #25273c;
+}
+.light-theme .filter_container .radio_button {
+  background-color: #fafafa;
+}
+@media screen and (min-width: 600px) {
+  .light-theme .filter_container .radio_button .radio_group label {
+    color: #25273c;
+  }
+}
+.light-theme .filter_container .radio_button .radio_group input:checked ~ label {
+  color: #3a7bfd;
+}
+.light-theme .filter_container .radio_button .radio_group label {
+  color: #25273c;
+}
+.light-theme .filter_container .clear_done {
+  font-size: 1rem;
+  color: #25273c;
+}
+
+.header {
+  min-width: 300px;
+  color: #fafafa;
+  background: url("/public/images/bg-mobile-dark.jpg") no-repeat center/cover;
+  height: 185px;
+}
+@media screen and (min-width: 600px) {
+  .header {
+    background: url("/public/images/bg-desktop-dark.jpg") no-repeat center/cover;
+    height: 220px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .header {
+    height: 260px;
+  }
+}
+.header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  padding-top: 2rem;
+}
+.header .container .logo {
+  pointer-events: none;
+  letter-spacing: 5px;
+  font-size: 1.7rem;
+}
+.header .container .theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fafafa;
+  background-color: transparent;
+  border: none;
+  font-size: 1.4rem;
+}
+.header .container .theme-btn span {
+  font-size: 0.7rem;
+  margin-left: 4px;
+}
+
+.authentication {
+  min-width: 300px;
+  padding: 1rem !important;
+  position: absolute;
+  top: 120px;
+  right: 0;
+  left: 0;
+}
+.authentication .container form {
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  padding: 1rem 0.5rem;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  position: relative;
+  background-color: #25273c;
+}
+.authentication .container form label {
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #fafafa;
+}
+.authentication .container form .or {
+  text-align: center;
+  position: relative;
+  line-height: 1;
+  margin: 0.3rem 0rem;
+  color: #fafafa;
+}
+.authentication .container form .input-container {
+  margin-top: 0.8rem;
+  width: 100%;
+}
+.authentication .container form .input-container .input-group {
+  position: relative;
+  width: 80%;
+  margin: 1rem auto;
+}
+.authentication .container form .input-container .input-group .signin-btn {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #3a7bfd;
+  color: #fafafa;
+  border: none;
+  border-radius: 3px;
+}
+.authentication .container form .input-container .input-group .signin-btn:hover {
+  background-color: #0859fd;
+}
+.authentication .container form .input-container .input-group input {
+  letter-spacing: 1px;
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 35px;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border-bottom: 1px solid #e4e5f1;
+  color: #e4e5f1;
+}
+.authentication .container form .input-container .input-group input:focus {
+  border-bottom: 1px solid #3a7bfd;
+}
+.authentication .container form .input-container .input-group input:focus ~ * {
+  color: #3a7bfd;
+}
+.authentication .container form .input-container .input-group .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  left: 5px;
+  color: #e4e5f1;
+}
+.authentication .container form .input-container .input-group .validation {
+  color: #c058f3;
+  font-size: 0.86rem;
+}
+.authentication .container form .user_account {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #fafafa;
+}
+.authentication .container form .user_account .LINK {
+  text-decoration: underline;
+  color: #3a7bfd;
+}
+.authentication .container form .login_with {
+  width: 80%;
+  margin: 0 auto;
+}
+.authentication .container form .login_with-btn .icon {
+  margin-right: 0.3rem;
+}
+.authentication .container form .login_with button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 0.85rem;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.todo {
+  position: relative;
+  margin-top: -95px;
+}
+@media screen and (min-width: 600px) {
+  .todo {
+    margin-top: -130px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .todo {
+    margin-top: -167px;
+  }
+}
+.todo .container .user_info {
+  display: flex;
+  align-items: center;
+  color: #fafafa;
+}
+.todo .container .user_info h2 {
+  font-size: 1rem;
+  pointer-events: none;
+}
+.todo .container .user_info button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  color: #fafafa;
+}
+.todo .container .user_info button:hover {
+  background-color: #3a7bfd;
+}
+
+#todo_container {
+  position: relative;
+  margin-top: 0.6rem;
+  max-width: 650px;
+  margin-inline: auto;
+}
+#todo_container .add_new_todo {
+  display: flex;
+  border-radius: 5px;
+  background-color: #25273c;
+}
+#todo_container .add_new_todo .btn_container {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#todo_container .add_new_todo .btn_container .enter_new_todo {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e4e5f1;
+  background-color: transparent;
+  transition: 0.1s ease !important;
+}
+#todo_container .add_new_todo .btn_container .enter_new_todo:hover {
+  transition: 0.1s ease !important;
+  background: linear-gradient(to right, #57ddff, #c058f3);
+  border: 1px solid #3a7bfd;
+  color: white;
+}
+#todo_container .add_new_todo input {
+  letter-spacing: 1px;
+  width: 100%;
+  height: 100%;
+  padding: 0.6rem 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  caret-color: #3a7bfd;
+  color: #fafafa;
+}
+#todo_container .todo_list {
+  position: relative;
+  margin-top: 1.5rem;
+  border-radius: 5px 5px 0px 0px;
+  max-height: 325px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  background-color: #25273c;
+}
+#todo_container .todo_list::-webkit-scrollbar {
+  appearance: none;
+  display: none !important;
+}
+#todo_container .todo_list .todo_item {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid #e4e5f1;
+}
+#todo_container .todo_list .todo_item:hover {
+  background-color: #3a7bfd;
+}
+#todo_container .todo_list .todo_item:hover .btn_delete {
+  opacity: 1;
+}
+#todo_container .todo_list .todo_item .btn_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+}
+#todo_container .todo_list .todo_item .btn_container .btn_circle {
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  border: 1px solid #e4e5f1;
+}
+#todo_container .todo_list .todo_item .btn_container .btn_circle:hover {
+  transition: 0.1s ease !important;
+  background: linear-gradient(to right, #57ddff, #c058f3);
+  border: 1px solid #3a7bfd;
+  color: white;
+}
+#todo_container .todo_list .todo_item .todo_text {
+  padding: 0.5rem 0.3rem;
+  flex: 2;
+  color: #e4e5f1;
+}
+#todo_container .todo_list .todo_item .btn_delete {
+  justify-content: flex-end;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border: none;
+  opacity: 0;
+  color: #e4e5f1;
+}
+#todo_container .todo_list .todo_item--done .btn_container .btn_circle {
+  border: 1px solid #e4e5f1;
+  transition: 0.1s ease !important;
+  background: linear-gradient(to right, #57ddff, #c058f3);
+  border: 1px solid #3a7bfd;
+  color: white;
+}
+#todo_container .todo_list .todo_item--done .todo_text {
+  text-decoration: line-through;
+  color: #a7a9b9;
+}
+
+.filter_container {
+  position: relative;
+  padding: 1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #25273c;
+}
+.filter_container .items_left {
+  pointer-events: none;
+  color: #e4e5f1;
+}
+.filter_container .radio_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 1rem 0rem;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 4rem;
+  border-radius: 5px;
+  background-color: #25273c;
+}
+@media screen and (min-width: 600px) {
+  .filter_container .radio_button {
+    position: relative;
+    padding: 0rem;
+    top: 0rem;
+    width: auto;
+  }
+  .filter_container .radio_button .radio_group label {
+    margin: 0rem 0.5rem;
+    color: #e4e5f1;
+  }
+}
+.filter_container .radio_button .radio_group {
+  margin: 0rem 0.2rem;
+}
+.filter_container .radio_button .radio_group input[type=radio] {
+  display: none;
+}
+.filter_container .radio_button .radio_group input:checked ~ label {
+  color: #3a7bfd;
+}
+.filter_container .radio_button .radio_group label {
+  cursor: pointer;
+  margin: 0rem 0.3rem;
+  font-size: 1rem;
+  color: #e4e5f1;
+}
+.filter_container .clear_done {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1rem;
+  color: #e4e5f1;
+}

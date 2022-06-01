@@ -1,0 +1,138 @@
+.authentication {
+  min-width: $min-width;
+  padding: 1rem !important;
+  position: absolute;
+  top: 120px;
+  right: 0;
+  left: 0;
+  .container {
+    form {
+      box-shadow: $boxshadow-dark;
+      border-radius: 3px;
+      padding: 1rem 0.5rem;
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+      position: relative;
+
+      // CHANGEABLE
+      background-color: $clr-dark-blue-75;
+      label {
+        text-transform: uppercase;
+        text-align: center;
+        display: block;
+        font-weight: bold;
+        letter-spacing: 2px;
+
+        // CHANGEABLE
+        color: $clr-white-100;
+      }
+
+      .or {
+        text-align: center;
+        position: relative;
+        line-height: 1;
+        margin: 0.3rem 0rem;
+        // CHANGEABLE
+        color: $clr-white-100;
+      }
+
+      .input-container {
+        margin-top: 0.8rem;
+        width: 100%;
+
+        .input-group {
+          position: relative;
+          width: 80%;
+          margin: 1rem auto;
+
+          .signin-btn {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            font-size: 1rem;
+            background-color: $clr-bright-blue;
+            color: $clr-white-100;
+            border: none;
+            border-radius: 3px;
+            &:hover {
+              background-color: darken($clr-bright-blue, 10%);
+            }
+          }
+
+          input {
+            letter-spacing: 1px;
+            width: 100%;
+            padding: 0.5rem;
+            padding-left: 35px;
+            font-size: 0.9rem;
+            background-color: transparent;
+
+            // CHANGEABLE
+            border-bottom: 1px solid $clr-white-75;
+            color: $clr-white-75;
+
+            &:focus {
+              border-bottom: 1px solid $clr-bright-blue;
+              & ~ * {
+                color: $clr-bright-blue;
+              }
+            }
+          }
+
+          .icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+            left: 5px;
+            color: $clr-white-75;
+          }
+
+          .validation {
+            color: hsl(280, 87%, 65%);
+            font-size: 0.86rem;
+          }
+        }
+      }
+
+      .user_account {
+        display: block;
+        margin-top: 1rem;
+        font-size: 0.7rem;
+        text-align: center;
+        // CHANGEABLE
+        color: $clr-white-100;
+
+        .LINK {
+          text-decoration: underline;
+          color: $clr-bright-blue;
+        }
+      }
+
+      .login_with {
+        width: 80%;
+        margin: 0 auto;
+
+        &-btn {
+          .icon {
+            margin-right: 0.3rem;
+          }
+        }
+
+        button {
+          width: 100%;
+          padding: 0.5rem 1rem;
+          font-weight: bold;
+          font-size: 0.85rem;
+          border: none;
+          outline: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}

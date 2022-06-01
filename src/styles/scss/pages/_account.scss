@@ -1,0 +1,287 @@
+.todo {
+  position: relative;
+  margin-top: -95px;
+  @include breakpoint(sm) {
+    margin-top: -130px;
+  }
+
+  @include breakpoint(md) {
+    margin-top: -167px;
+  }
+
+  .container {
+    .user_info {
+      display: flex;
+      align-items: center;
+
+      // CHANGEABLE
+      color: $clr-white-100;
+
+      h2 {
+        font-size: 1rem;
+        pointer-events: none;
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 3px;
+
+        // CHANGEABLE
+        color: $clr-white-100;
+
+        &:hover {
+          background-color: $clr-bright-blue;
+        }
+      }
+    }
+  }
+}
+
+#todo_container {
+  position: relative;
+  margin-top: 0.6rem;
+  max-width: 650px;
+  margin-inline: auto;
+
+  .add_new_todo {
+    display: flex;
+    border-radius: 5px;
+    // CHANGEABLE
+    background-color: $clr-dark-blue-75;
+
+    .btn_container {
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .enter_new_todo {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // CHANGEABLE
+        border: 1px solid $clr-white-75;
+        background-color: transparent;
+        transition: 0.1s ease !important;
+
+        &:hover {
+          transition: 0.1s ease !important;
+          background: linear-gradient(
+            to right,
+            hsl(192, 100%, 67%),
+            hsl(280, 87%, 65%)
+          );
+          border: 1px solid $clr-bright-blue;
+          color: white;
+        }
+      }
+    }
+
+    input {
+      letter-spacing: 1px;
+      width: 100%;
+      height: 100%;
+      padding: 0.6rem 0rem;
+      background-color: transparent;
+      font-size: 1rem;
+      caret-color: $clr-bright-blue;
+
+      //   CHANGEABLE
+      color: $clr-white-100;
+    }
+  }
+
+  .todo_list {
+    position: relative;
+    margin-top: 1.5rem;
+    border-radius: 5px 5px 0px 0px;
+    max-height: 325px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    //   CHANGEABLE
+    background-color: $clr-dark-blue-75;
+
+    &::-webkit-scrollbar {
+      appearance: none;
+      display: none !important;
+    }
+
+    .todo_item {
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      padding: 0.3rem 0.5rem;
+      // CHANGEABLE
+      border-bottom: 1px solid $clr-white-75;
+
+      &:hover {
+        background-color: $clr-bright-blue;
+        .btn_delete {
+          opacity: 1;
+        }
+      }
+
+      .btn_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+
+        .btn_circle {
+          background-color: transparent;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: transparent;
+          // CHANGEABLE
+          border: 1px solid $clr-white-75;
+
+          &:hover {
+            transition: 0.1s ease !important;
+            background: linear-gradient(
+              to right,
+              hsl(192, 100%, 67%),
+              hsl(280, 87%, 65%)
+            );
+            border: 1px solid $clr-bright-blue;
+            color: white;
+          }
+        }
+      }
+
+      .todo_text {
+        padding: 0.5rem 0.3rem;
+        flex: 2;
+        // CHANGEABLE
+        color: $clr-white-75;
+      }
+
+      .btn_delete {
+        justify-content: flex-end;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        border: none;
+        opacity: 0;
+
+        // CHANGEABLE
+        color: $clr-white-75;
+      }
+    }
+
+    .todo_item--done {
+      .btn_container {
+        .btn_circle {
+          // CHANGEABLE
+          border: 1px solid $clr-white-75;
+
+          transition: 0.1s ease !important;
+          background: linear-gradient(
+            to right,
+            hsl(192, 100%, 67%),
+            hsl(280, 87%, 65%)
+          );
+          border: 1px solid $clr-bright-blue;
+          color: white;
+        }
+      }
+
+      .todo_text {
+        text-decoration: line-through;
+        // CHANGEABLE
+        color: darken($clr-white-50, 15%);
+      }
+    }
+  }
+}
+
+.filter_container {
+  position: relative;
+  padding: 1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0px 0px 5px 5px;
+  // CHANGEABLE
+  background-color: $clr-dark-blue-75;
+
+  .items_left {
+    pointer-events: none;
+    // CHANGEABLE
+    color: $clr-white-75;
+  }
+
+  .radio_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 1rem 0rem;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 4rem;
+    border-radius: 5px;
+
+    @include breakpoint(sm) {
+      position: relative;
+      padding: 0rem;
+      top: 0rem;
+      width: auto;
+      .radio_group {
+        label {
+          margin: 0rem 0.5rem;
+          // CHANGEABLE
+          color: $clr-white-75;
+        }
+      }
+    }
+    // CHANGEABLE
+    background-color: $clr-dark-blue-75;
+    .radio_group {
+      margin: 0rem 0.2rem;
+      input[type="radio"] {
+        display: none;
+      }
+
+      input {
+        &:checked {
+          & ~ label {
+            color: $clr-bright-blue;
+          }
+        }
+      }
+
+      label {
+        cursor: pointer;
+        margin: 0rem 0.3rem;
+        font-size: 1rem;
+        // CHANGEABLE
+        color: $clr-white-75;
+      }
+    }
+  }
+
+  .clear_done {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: $ff-Josefin-Sans;
+    font-size: 1rem;
+    // CHANGEABLE
+    color: $clr-white-75;
+  }
+}
