@@ -2,21 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Todoitem from "./Todoitem";
 import { useAuth } from "../../AuthContext";
-import { BsCheckLg } from "react-icons/bs";
-import { FaTimes } from "react-icons/fa";
 
-import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { uid } from "uid";
-import { set, ref, onValue, remove, update } from "firebase/database";
+import { set, ref, onValue, remove } from "firebase/database";
 
 function Account() {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const navigate = useNavigate();
   const { logout, user } = useAuth();
-
-  // console.log(todos.map((todo) => todo.id));
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -26,6 +22,7 @@ function Account() {
         onValue(userRef, (snapshot) => {
           setTodos([]);
           const data = snapshot.val();
+
           if (data !== null) {
             Object.values(data).map((todo) => {
               setTodos((oldArray) => [...oldArray, todo]);
@@ -55,7 +52,7 @@ function Account() {
     writeToDatabase();
   };
 
-  // write data
+  // write database
   const writeToDatabase = () => {
     const uidd = uid();
     if (input == "") return;
@@ -65,6 +62,32 @@ function Account() {
       id: uidd,
     });
     setInput("");
+  };
+
+  const filterTodos = () => {};
+
+  const handleFilter = (e) => {
+    setFilter(e.target.value);
+  };
+
+  console.log(filter);
+
+  const itemsLeft = () => {
+    let size = todos.reduce(
+      (prev, current) => prev + (current.completed !== true),
+      0
+    );
+    return size;
+  };
+
+  const clearAllCompleted = (todos) => {
+    todos.forEach((todo) =>
+      todo.completed
+        ? remove(ref(db, `/${auth.currentUser.uid}/${todo.id}`)).catch(
+            (error) => console.error(error)
+          )
+        : null
+    );
   };
 
   return (
@@ -90,44 +113,34 @@ function Account() {
 
           {/* todo list  */}
           <ul className="todo_list">
-            <Todoitem todos={todos} />
-
-            {/* {todos.map((todo) => {
-              return (
-                <li className="todo_item">
-                  <div className="btn_container">
-                    <button className="btn_circle">
-                      <BsCheckLg />
-                    </button>
-                  </div>
-                  <p className="todo_text">{todo.todo}</p>
-                  <button className="btn_delete">
-                    <FaTimes />
-                  </button>
-                </li>
-              );
-            })} */}
+            <Todoitem todos={todos} input={input} />
           </ul>
 
           {/* filter todo   */}
           <div className="filter_container">
-            <div className="items_left">{todos.length} items left</div>
+            <div className="items_left">{itemsLeft()} items left</div>
 
             <div className="radio_button">
               <div className="radio_group">
-                <input type="radio" name="filter" id="all" />
+                <input type="radio" name="filter" value="all" />
                 <label htmlFor="all">All</label>
               </div>
               <div className="radio_group">
-                <input type="radio" name="filter" id="active" />
+                <input type="radio" name="filter" value="active" />
                 <label htmlFor="active">Active</label>
               </div>
               <div className="radio_group">
-                <input type="radio" name="filter" id="completed" />
+                <input type="radio" name="filter" value="completed" />
                 <label htmlFor="completed">Completed</label>
               </div>
             </div>
-            <button className="clear_done">Clear Completed</button>
+
+            <button
+              className="clear_done"
+              onClick={() => clearAllCompleted(todos)}
+            >
+              Clear Completed
+            </button>
           </div>
         </form>
       </div>
