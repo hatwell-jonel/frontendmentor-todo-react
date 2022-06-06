@@ -540,45 +540,20 @@ button,
   pointer-events: none;
   color: #e4e5f1;
 }
-.filter_container .radio_button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  padding: 1rem 0rem;
-  width: 100%;
-  left: 0;
-  right: 0;
-  top: 4rem;
-  border-radius: 5px;
-  background-color: #25273c;
-}
-@media screen and (min-width: 600px) {
-  .filter_container .radio_button {
-    position: relative;
-    padding: 0rem;
-    top: 0rem;
-    width: auto;
-  }
-  .filter_container .radio_button .radio_group label {
-    margin: 0rem 0.5rem;
-    color: #e4e5f1;
-  }
-}
-.filter_container .radio_button .radio_group {
-  margin: 0rem 0.2rem;
-}
-.filter_container .radio_button .radio_group input[type=radio] {
-  display: none;
-}
-.filter_container .radio_button .radio_group input:checked ~ label {
-  color: #3a7bfd;
-}
-.filter_container .radio_button .radio_group label {
-  cursor: pointer;
-  margin: 0rem 0.3rem;
+.filter_container .filter_buttons .filter {
+  font-family: "Josefin Sans", sans-serif;
+  color: #fafafa;
+  text-transform: capitalize;
+  margin-right: 0.8rem;
+  border: none;
+  background-color: transparent;
   font-size: 1rem;
-  color: #e4e5f1;
+}
+.filter_container .filter_buttons .filter:last-of-type {
+  margin-right: 0rem;
+}
+.filter_container .filter_buttons .selected {
+  color: #3a7bfd;
 }
 .filter_container .clear_done {
   background-color: transparent;

@@ -12,7 +12,7 @@ function Account() {
   const [todos, setTodos] = useState([]);
   const navigate = useNavigate();
   const { logout, user } = useAuth();
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -64,19 +64,12 @@ function Account() {
     setInput("");
   };
 
-  const filterTodos = () => {};
-
   const handleFilter = (e) => {
     setFilter(e.target.value);
   };
 
-  console.log(filter);
-
   const itemsLeft = () => {
-    let size = todos.reduce(
-      (prev, current) => prev + (current.completed !== true),
-      0
-    );
+    let size = todos.reduce((a, b) => a + (b.completed !== true), 0);
     return size;
   };
 
@@ -120,7 +113,7 @@ function Account() {
           <div className="filter_container">
             <div className="items_left">{itemsLeft()} items left</div>
 
-            <div className="radio_button">
+            {/* <div className="radio_button">
               <div className="radio_group">
                 <input type="radio" name="filter" value="all" />
                 <label htmlFor="all">All</label>
@@ -133,6 +126,36 @@ function Account() {
                 <input type="radio" name="filter" value="completed" />
                 <label htmlFor="completed">Completed</label>
               </div>
+            </div> */}
+
+            <div className="filter_buttons">
+              <button
+                type="submit"
+                value="all"
+                // className="filter selected"
+                className={`filter ${filter === "all" ? "selected" : null}`}
+                onClick={handleFilter}
+              >
+                all
+              </button>
+              <button
+                type="submit"
+                value="active"
+                className={`filter ${filter === "active" ? "selected" : null}`}
+                onClick={handleFilter}
+              >
+                active
+              </button>
+              <button
+                type="submit"
+                value="completed"
+                className={`filter ${
+                  filter === "completed" ? "selected" : null
+                }`}
+                onClick={handleFilter}
+              >
+                completed
+              </button>
             </div>
 
             <button

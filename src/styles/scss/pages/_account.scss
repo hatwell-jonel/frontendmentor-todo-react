@@ -224,54 +224,74 @@
     color: $clr-white-75;
   }
 
-  .radio_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    padding: 1rem 0rem;
-    width: 100%;
-    left: 0;
-    right: 0;
-    top: 4rem;
-    border-radius: 5px;
+  // .radio_button {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   position: absolute;
+  //   padding: 1rem 0rem;
+  //   width: 100%;
+  //   left: 0;
+  //   right: 0;
+  //   top: 4rem;
+  //   border-radius: 5px;
 
-    @include breakpoint(sm) {
-      position: relative;
-      padding: 0rem;
-      top: 0rem;
-      width: auto;
-      .radio_group {
-        label {
-          margin: 0rem 0.5rem;
-          // CHANGEABLE
-          color: $clr-white-75;
-        }
+  //   @include breakpoint(sm) {
+  //     position: relative;
+  //     padding: 0rem;
+  //     top: 0rem;
+  //     width: auto;
+  //     .radio_group {
+  //       label {
+  //         margin: 0rem 0.5rem;
+  //         // CHANGEABLE
+  //         color: $clr-white-75;
+  //       }
+  //     }
+  //   }
+  //   // CHANGEABLE
+  //   background-color: $clr-dark-blue-75;
+  //   .radio_group {
+  //     margin: 0rem 0.2rem;
+  //     input[type="radio"] {
+  //       display: none;
+  //     }
+
+  //     input {
+  //       &:checked {
+  //         & ~ label {
+  //           color: $clr-bright-blue;
+  //         }
+  //       }
+  //     }
+
+  //     label {
+  //       cursor: pointer;
+  //       margin: 0rem 0.3rem;
+  //       font-size: 1rem;
+  //       // CHANGEABLE
+  //       color: $clr-white-75;
+  //     }
+  //   }
+  // }
+
+  .filter_buttons {
+    .filter {
+      font-family: $ff-Josefin-Sans;
+      color: $clr-white-100;
+      text-transform: capitalize;
+      margin-right: 0.8rem;
+      border: none;
+      background-color: transparent;
+      font-size: 1rem;
+
+      &:last-of-type {
+        margin-right: 0rem;
       }
     }
-    // CHANGEABLE
-    background-color: $clr-dark-blue-75;
-    .radio_group {
-      margin: 0rem 0.2rem;
-      input[type="radio"] {
-        display: none;
-      }
 
-      input {
-        &:checked {
-          & ~ label {
-            color: $clr-bright-blue;
-          }
-        }
-      }
-
-      label {
-        cursor: pointer;
-        margin: 0rem 0.3rem;
-        font-size: 1rem;
-        // CHANGEABLE
-        color: $clr-white-75;
-      }
+    .selected {
+      color: $clr-bright-blue;
     }
   }
 
