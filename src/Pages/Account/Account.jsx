@@ -66,6 +66,33 @@ function Account() {
 
   const handleFilter = (e) => {
     setFilter(e.target.value);
+    console.log(filter);
+    const todo_item = document.querySelectorAll(".todo_item");
+
+    // if (filter === "all") {
+    //   todo_item.forEach((item) => {
+    //     item.style.display = "flex";
+    //     console.log("all");
+    //   });
+    // } else if (filter === "active") {
+    //   todo_item.forEach((item) => {
+    //     if (item.classList.contains("todo_item--done")) {
+    //       item.style.display = "none";
+    //       console.log("active");
+    //     } else {
+    //       item.style.display = "flex";
+    //     }
+    //   });
+    // } else if (filter === "completed") {
+    //   todo_item.forEach((item) => {
+    //     if (item.classList.contains("todo_item--done")) {
+    //       item.style.display = "flex";
+    //       console.log("completed");
+    //     } else {
+    //       item.style.display = "none";
+    //     }
+    //   });
+    // }
   };
 
   const itemsLeft = () => {
@@ -113,28 +140,12 @@ function Account() {
           <div className="filter_container">
             <div className="items_left">{itemsLeft()} items left</div>
 
-            {/* <div className="radio_button">
-              <div className="radio_group">
-                <input type="radio" name="filter" value="all" />
-                <label htmlFor="all">All</label>
-              </div>
-              <div className="radio_group">
-                <input type="radio" name="filter" value="active" />
-                <label htmlFor="active">Active</label>
-              </div>
-              <div className="radio_group">
-                <input type="radio" name="filter" value="completed" />
-                <label htmlFor="completed">Completed</label>
-              </div>
-            </div> */}
-
             <div className="filter_buttons">
               <button
                 type="submit"
                 value="all"
-                // className="filter selected"
                 className={`filter ${filter === "all" ? "selected" : null}`}
-                onClick={handleFilter}
+                onClick={(e) => handleFilter(e)}
               >
                 all
               </button>
@@ -142,7 +153,7 @@ function Account() {
                 type="submit"
                 value="active"
                 className={`filter ${filter === "active" ? "selected" : null}`}
-                onClick={handleFilter}
+                onClick={(e) => handleFilter(e)}
               >
                 active
               </button>
@@ -152,7 +163,7 @@ function Account() {
                 className={`filter ${
                   filter === "completed" ? "selected" : null
                 }`}
-                onClick={handleFilter}
+                onClick={(e) => handleFilter(e)}
               >
                 completed
               </button>
