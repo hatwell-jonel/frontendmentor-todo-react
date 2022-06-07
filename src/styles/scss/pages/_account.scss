@@ -11,6 +11,7 @@
 
   .container {
     .user_info {
+      position: relative;
       display: flex;
       align-items: center;
 
@@ -22,13 +23,13 @@
         pointer-events: none;
       }
 
-      button {
+      .dropdown_btn {
         background-color: transparent;
         border: none;
         outline: none;
-        margin-left: 0.5rem;
+        margin-left: 0.2rem;
         font-size: 0.8rem;
-        padding: 0.2rem 0.5rem;
+        padding: 0.1rem 0.3rem;
         border-radius: 3px;
 
         // CHANGEABLE
@@ -37,6 +38,38 @@
         &:hover {
           background-color: $clr-bright-blue;
         }
+      }
+
+      .dropdown {
+        display: flex;
+        flex-direction: column;
+        background-color: $clr-bright-blue;
+        border-radius: 5px;
+        z-index: 999;
+        position: absolute;
+        left: 120px;
+        top: 25px;
+        display: none;
+        box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);
+
+        button {
+          border: none;
+          background-color: transparent;
+          font-size: 0.9rem;
+          text-transform: capitalize;
+          padding: 0.5rem;
+          color: $clr-white-100;
+          text-align: left;
+
+          &:hover {
+            background-color: $clr-white-100;
+            color: $clr-bright-blue;
+          }
+        }
+      }
+
+      .dropdown-show {
+        display: flex;
       }
     }
   }
@@ -343,4 +376,51 @@
     // CHANGEABLE
     color: $clr-white-75;
   }
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &_box {
+    margin-top: -30px;
+    background-color: $clr-white-100;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: $boxshadow-dark;
+    border-radius: 5px;
+    text-align: center;
+    color: $clr-dark-blue-100;
+    padding: 1rem;
+    font-size: 1rem;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+
+    .modal_button {
+      display: flex;
+      margin-top: 5px;
+
+      button {
+        cursor: pointer;
+        flex: 1;
+        font-size: 1rem;
+        padding: 0.3rem;
+      }
+    }
+  }
+}
+
+.modal-close {
+  display: none;
 }

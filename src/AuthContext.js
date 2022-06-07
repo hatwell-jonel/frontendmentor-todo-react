@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   updateProfile,
+  deleteUser,
 } from "firebase/auth";
 import { useHistory } from "react-router-dom";
 const AuthContext = createContext();
@@ -15,6 +16,17 @@ const provider = new GoogleAuthProvider();
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
+
+  // delete user
+  const deleteAccount = () => {
+    deleteUser(user)
+      .then(() => {
+        alert("Your account is successfully deleted.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // signin using google account
   const googleSignIn = () => {
@@ -68,7 +80,14 @@ export function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ googleSignIn, logout, createUser, emailAndPasswordSignIn, user }}
+      value={{
+        googleSignIn,
+        logout,
+        createUser,
+        emailAndPasswordSignIn,
+        deleteAccount,
+        user,
+      }}
     >
       {children}
     </AuthContext.Provider>

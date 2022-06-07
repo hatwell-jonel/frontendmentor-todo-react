@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { FaUserAlt } from "react-icons/fa";
-
-import { auth } from "../../firebase";
+import { motion } from "framer-motion";
 import { useAuth } from "../../AuthContext";
 
 function Signup() {
@@ -17,13 +16,6 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [conpassword, setConpassword] = useState("");
 
-  const timeout = () => {
-    const validation = setTimeout(() => {
-      setEror("");
-    }, 3000);
-    return validation;
-  };
-
   const validation = () => {
     if (
       username === "" ||
@@ -33,8 +25,11 @@ function Signup() {
     ) {
       setEror("Fields cannot be empthy.");
       timeout();
+    } else if (conpassword === "") {
+      setEror("Please confirm password.");
+      timeout();
     } else if (password !== conpassword) {
-      setEror("password not matched.");
+      setEror("Password not matched.");
       timeout();
     } else {
       setEror("");
@@ -43,6 +38,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (conpassword == "" || conpassword == null) return;
     validation();
     createUser(username, email, password);
   };
@@ -63,9 +59,27 @@ function Signup() {
     setConpassword(e.target.value);
   };
 
+  // ANIMATION
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
+  const timeout = () => {
+    const validation = setTimeout(() => {
+      setEror("");
+    }, 3000);
+    return validation;
+  };
+
   return (
     <>
-      <div className="authentication">
+      <motion.div
+        className="authentication"
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+      >
         <div className="container">
           <form onSubmit={handleSubmit}>
             <label>Sign Up</label>
@@ -138,7 +152,7 @@ function Signup() {
             </span>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

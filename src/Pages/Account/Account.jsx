@@ -2,18 +2,25 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Todoitem from "./Todoitem";
 import { useAuth } from "../../AuthContext";
-
 import { auth, db } from "../../firebase";
+import { motion } from "framer-motion";
 import { uid } from "uid";
 import { set, ref, onValue, remove } from "firebase/database";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { VscTriangleDown } from "react-icons/vsc";
 
 function Account() {
-  const { logout, user } = useAuth();
+  const { logout, deleteAccount, user } = useAuth();
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [dropdown, setDropdown] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  const deleteCurrentUser = () => {
+    deleteAccount();
+  };
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
@@ -106,7 +113,6 @@ function Account() {
         onValue(userRef, (snapshot) => {
           setTodos([]);
           const data = snapshot.val();
-
           if (data !== null) {
             Object.values(data).map((todo) => {
               setTodos((oldArray) => [...oldArray, todo]);
@@ -119,12 +125,58 @@ function Account() {
     });
   }, []);
 
+  const handleDropdown = () => {
+    setDropdown(!dropdown);
+  };
+
+  const handleModal = () => {
+    setModal(!modal);
+  };
+
+  // ANIMATION
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
   return (
-    <div className="todo">
+    <motion.div
+      className="todo"
+      initial="hidden"
+      animate="visible"
+      variants={variants}
+    >
       <div className="container">
         <section className="user_info">
           <h2>Hello, {user.displayName}</h2>
-          <button onClick={handleSignOut}>logout</button>
+          <button className="dropdown_btn" onClick={handleDropdown}>
+            <VscTriangleDown />
+          </button>
+
+          <div className={`dropdown ${dropdown ? "dropdown-show" : null}`}>
+            <button onClick={handleModal}>Delete Account</button>
+            <button onClick={handleSignOut}>logout</button>
+          </div>
+
+          <div className={`${modal ? "modal" : "modal-close"}`}>
+            <div className="modal_box">
+              <p>
+                After you have deleted this account, it will be permanently
+                <strong> deleted</strong>. Accounts cannot be recovered
+              </p>
+              <div className="modal_button">
+                <button className="modal_button-no" onClick={handleModal}>
+                  No
+                </button>
+                <button
+                  className="modal_button-yes"
+                  onClick={deleteCurrentUser}
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
         </section>
         <form id="todo_container" onSubmit={handleSubmit}>
           {/* intput todo   */}
@@ -140,10 +192,6 @@ function Account() {
             />
           </div>
           {/* todo list  */}
-          {/* <ul className="todo_list">
-            <Todoitem todos={todos} input={input} />
-          </ul> */}
-
           <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="todos">
               {(provided) => (
@@ -155,25 +203,6 @@ function Account() {
                   <Todoitem todos={todos} input={input} />
                   {provided.placeholder}
                 </ul>
-                // <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                //   {characters.map(({id, name, thumb}, index) => {
-                //     return (
-                //       <Draggable key={id} draggableId={id} index={index}>
-                //         {(provided) => (
-                //           <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                //             <div className="characters-thumb">
-                //               <img src={thumb} alt={`${name} Thumb`} />
-                //             </div>
-                //             <p>
-                //               { name }
-                //             </p>
-                //           </li>
-                //         )}
-                //       </Draggable>
-                //     );
-                //   })}
-                //   {provided.placeholder}
-                // </ul>
               )}
             </Droppable>
           </DragDropContext>
@@ -222,7 +251,7 @@ function Account() {
           <p className="dnd">Drag and drop to reorder list</p>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

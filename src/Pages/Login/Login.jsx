@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 function Login() {
@@ -33,9 +33,20 @@ function Login() {
     }
   }, [user]);
 
+  // ANIMATION
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
   return (
     <>
-      <div className="authentication">
+      <motion.div
+        className="authentication"
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+      >
         <div className="container">
           <form onSubmit={(e) => e.preventDefault()}>
             <label>Log In</label>
@@ -89,7 +100,7 @@ function Login() {
             </span>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
