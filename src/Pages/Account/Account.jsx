@@ -6,34 +6,22 @@ import { useAuth } from "../../AuthContext";
 import { auth, db } from "../../firebase";
 import { uid } from "uid";
 import { set, ref, onValue, remove } from "firebase/database";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function Account() {
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
-  const navigate = useNavigate();
-  const { logout, user } = useAuth();
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        // read data
-        const userRef = ref(db, `/${auth.currentUser.uid}`);
-        onValue(userRef, (snapshot) => {
-          setTodos([]);
-          const data = snapshot.val();
-
-          if (data !== null) {
-            Object.values(data).map((todo) => {
-              setTodos((oldArray) => [...oldArray, todo]);
-            });
-          }
-        });
-      } else if (!user) {
-        navigate("/");
-      }
-    });
-  }, []);
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(todos);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setTodos(items);
+  };
 
   const handleSignOut = async () => {
     try {
@@ -110,6 +98,27 @@ function Account() {
     );
   };
 
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // read data
+        const userRef = ref(db, `/${auth.currentUser.uid}`);
+        onValue(userRef, (snapshot) => {
+          setTodos([]);
+          const data = snapshot.val();
+
+          if (data !== null) {
+            Object.values(data).map((todo) => {
+              setTodos((oldArray) => [...oldArray, todo]);
+            });
+          }
+        });
+      } else if (!user) {
+        navigate("/");
+      }
+    });
+  }, []);
+
   return (
     <div className="todo">
       <div className="container">
@@ -130,11 +139,44 @@ function Account() {
               onChange={inputTodo}
             />
           </div>
-
           {/* todo list  */}
-          <ul className="todo_list">
+          {/* <ul className="todo_list">
             <Todoitem todos={todos} input={input} />
-          </ul>
+          </ul> */}
+
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="todos">
+              {(provided) => (
+                <ul
+                  className="todo_list"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  <Todoitem todos={todos} input={input} />
+                  {provided.placeholder}
+                </ul>
+                // <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
+                //   {characters.map(({id, name, thumb}, index) => {
+                //     return (
+                //       <Draggable key={id} draggableId={id} index={index}>
+                //         {(provided) => (
+                //           <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                //             <div className="characters-thumb">
+                //               <img src={thumb} alt={`${name} Thumb`} />
+                //             </div>
+                //             <p>
+                //               { name }
+                //             </p>
+                //           </li>
+                //         )}
+                //       </Draggable>
+                //     );
+                //   })}
+                //   {provided.placeholder}
+                // </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
 
           {/* filter todo   */}
           <div className="filter_container">
@@ -176,6 +218,8 @@ function Account() {
               Clear Completed
             </button>
           </div>
+
+          <p className="dnd">Drag and drop to reorder list</p>
         </form>
       </div>
     </div>
@@ -183,3 +227,5 @@ function Account() {
 }
 
 export default Account;
+
+// https://www.youtube.com/watch?v=aYZRRyukuIw&t=60s

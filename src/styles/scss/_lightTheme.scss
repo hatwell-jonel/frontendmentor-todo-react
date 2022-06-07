@@ -133,6 +133,7 @@
       .todo_item {
         // CHANGEABLE
         border-bottom: 1px solid $clr-dark-blue-100;
+        background-color: $clr-white-100;
 
         &:hover {
           background-color: $clr-bright-blue;
@@ -160,6 +161,35 @@
           color: $clr-dark-blue-100;
         }
       }
+
+      .todo_item--done {
+        .btn_container {
+          .btn_circle {
+            // CHANGEABLE
+            border: 1px solid $clr-white-75;
+
+            transition: 0.1s ease !important;
+            background: linear-gradient(
+              to right,
+              hsl(192, 100%, 67%),
+              hsl(280, 87%, 65%)
+            );
+            border: 1px solid $clr-bright-blue;
+            color: white;
+          }
+        }
+
+        .todo_text {
+          text-decoration: line-through;
+          // CHANGEABLE
+          color: darken($clr-white-75, 15%);
+        }
+      }
+    }
+
+    .dnd {
+      // CHANGEABLE
+      color: $clr-dark-blue-75;
     }
   }
 
@@ -172,31 +202,60 @@
       color: $clr-dark-blue-75;
     }
 
-    .radio_button {
+    // .radio_button {
+    //   // CHANGEABLE
+    //   background-color: $clr-white-100;
+    //   @include breakpoint(sm) {
+    //     .radio_group {
+    //       label {
+    //         // CHANGEABLE
+    //         color: $clr-dark-blue-75;
+    //       }
+    //     }
+    //   }
+
+    //   .radio_group {
+    //     input {
+    //       &:checked {
+    //         & ~ label {
+    //           color: $clr-bright-blue;
+    //         }
+    //       }
+    //     }
+
+    //     label {
+    //       // CHANGEABLE
+    //       color: $clr-dark-blue-75;
+    //     }
+    //   }
+    // }
+
+    .filter_buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      padding: 1rem 0rem;
+      width: 100%;
+      left: 0;
+      right: 0;
+      top: 4rem;
+      border-radius: 5px;
       // CHANGEABLE
       background-color: $clr-white-100;
+
       @include breakpoint(sm) {
-        .radio_group {
-          label {
-            // CHANGEABLE
-            color: $clr-dark-blue-75;
-          }
-        }
+        position: relative;
+        padding: 0rem;
+        top: 0rem;
+        width: auto;
+      }
+      .filter {
+        color: $clr-dark-blue-100;
       }
 
-      .radio_group {
-        input {
-          &:checked {
-            & ~ label {
-              color: $clr-bright-blue;
-            }
-          }
-        }
-
-        label {
-          // CHANGEABLE
-          color: $clr-dark-blue-75;
-        }
+      .selected {
+        color: $clr-bright-blue;
       }
     }
 

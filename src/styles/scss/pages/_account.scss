@@ -121,6 +121,7 @@
       padding: 0.3rem 0.5rem;
       // CHANGEABLE
       border-bottom: 1px solid $clr-white-75;
+      background-color: $clr-dark-blue-75;
 
       &:hover {
         background-color: $clr-bright-blue;
@@ -206,6 +207,18 @@
       }
     }
   }
+  .dnd {
+    font-family: $ff-Josefin-Sans;
+    font-size: 0.9rem;
+    margin-top: 5.5rem;
+    text-align: center;
+    // CHANGEABLE
+    color: $clr-white-50;
+
+    @include breakpoint(sm) {
+      margin-top: 3rem;
+    }
+  }
 }
 
 .filter_container {
@@ -276,6 +289,32 @@
   // }
 
   .filter_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 1rem 0rem;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 4rem;
+    border-radius: 5px;
+    // CHANGEABLE
+    background-color: $clr-dark-blue-75;
+
+    @include breakpoint(sm) {
+      position: relative;
+      padding: 0rem;
+      top: 0rem;
+      width: auto;
+      .radio_group {
+        label {
+          margin: 0rem 0.5rem;
+          // CHANGEABLE
+          color: $clr-white-75;
+        }
+      }
+    }
     .filter {
       font-family: $ff-Josefin-Sans;
       color: $clr-white-100;

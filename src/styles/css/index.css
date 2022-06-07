@@ -166,6 +166,7 @@ button,
 }
 .light-theme #todo_container .todo_list .todo_item {
   border-bottom: 1px solid #161722;
+  background-color: #fafafa;
 }
 .light-theme #todo_container .todo_list .todo_item:hover {
   background-color: #3a7bfd;
@@ -184,25 +185,52 @@ button,
 .light-theme #todo_container .todo_list .todo_item .btn_delete {
   color: #161722;
 }
+.light-theme #todo_container .todo_list .todo_item--done .btn_container .btn_circle {
+  border: 1px solid #e4e5f1;
+  transition: 0.1s ease !important;
+  background: linear-gradient(to right, #57ddff, #c058f3);
+  border: 1px solid #3a7bfd;
+  color: white;
+}
+.light-theme #todo_container .todo_list .todo_item--done .todo_text {
+  text-decoration: line-through;
+  color: #b1b4d8;
+}
+.light-theme #todo_container .dnd {
+  color: #25273c;
+}
 .light-theme .filter_container {
   background-color: #fafafa;
 }
 .light-theme .filter_container .items_left {
   color: #25273c;
 }
-.light-theme .filter_container .radio_button {
+.light-theme .filter_container .filter_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 1rem 0rem;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 4rem;
+  border-radius: 5px;
   background-color: #fafafa;
 }
 @media screen and (min-width: 600px) {
-  .light-theme .filter_container .radio_button .radio_group label {
-    color: #25273c;
+  .light-theme .filter_container .filter_buttons {
+    position: relative;
+    padding: 0rem;
+    top: 0rem;
+    width: auto;
   }
 }
-.light-theme .filter_container .radio_button .radio_group input:checked ~ label {
-  color: #3a7bfd;
+.light-theme .filter_container .filter_buttons .filter {
+  color: #161722;
 }
-.light-theme .filter_container .radio_button .radio_group label {
-  color: #25273c;
+.light-theme .filter_container .filter_buttons .selected {
+  color: #3a7bfd;
 }
 .light-theme .filter_container .clear_done {
   font-size: 1rem;
@@ -469,6 +497,7 @@ button,
   display: flex;
   padding: 0.3rem 0.5rem;
   border-bottom: 1px solid #e4e5f1;
+  background-color: #25273c;
 }
 #todo_container .todo_list .todo_item:hover {
   background-color: #3a7bfd;
@@ -526,6 +555,18 @@ button,
   text-decoration: line-through;
   color: #a7a9b9;
 }
+#todo_container .dnd {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 0.9rem;
+  margin-top: 5.5rem;
+  text-align: center;
+  color: #d2d3db;
+}
+@media screen and (min-width: 600px) {
+  #todo_container .dnd {
+    margin-top: 3rem;
+  }
+}
 
 .filter_container {
   position: relative;
@@ -539,6 +580,31 @@ button,
 .filter_container .items_left {
   pointer-events: none;
   color: #e4e5f1;
+}
+.filter_container .filter_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 1rem 0rem;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 4rem;
+  border-radius: 5px;
+  background-color: #25273c;
+}
+@media screen and (min-width: 600px) {
+  .filter_container .filter_buttons {
+    position: relative;
+    padding: 0rem;
+    top: 0rem;
+    width: auto;
+  }
+  .filter_container .filter_buttons .radio_group label {
+    margin: 0rem 0.5rem;
+    color: #e4e5f1;
+  }
 }
 .filter_container .filter_buttons .filter {
   font-family: "Josefin Sans", sans-serif;
