@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -27,11 +27,11 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-    if (user != null) {
-      navigate("/account");
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user != null) {
+  //     navigate("/account");
+  //   }
+  // }, [user, navigate]);
 
   // ANIMATION
   const variants = {
@@ -39,6 +39,7 @@ function Login() {
     hidden: { opacity: 0 },
   };
 
+  if (user) return navigate("/account");
   return (
     <>
       <motion.div
