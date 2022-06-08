@@ -7,6 +7,7 @@ import Account from "./Pages/Account/Account";
 // import Protected from "./Components/Protected/Protected";
 import PrivateRoute from "./Components/Protected/PrivateRoute";
 import Header from "./Components/Header/Header";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -32,9 +33,12 @@ function App() {
       <AuthContextProvider>
         <Header />
         <Switch>
+          // try to find the urls starting from the top
           <PrivateRoute exact path="/" component={Account} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          // if we can't find the page in the urls above this then default to not found page
+          <Route component={NotFound} />
         </Switch>
       </AuthContextProvider>
     </BrowserRouter>
