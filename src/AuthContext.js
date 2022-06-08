@@ -10,7 +10,6 @@ import {
   updateProfile,
   deleteUser,
 } from "firebase/auth";
-import { useHistory } from "react-router-dom";
 const AuthContext = createContext();
 const provider = new GoogleAuthProvider();
 

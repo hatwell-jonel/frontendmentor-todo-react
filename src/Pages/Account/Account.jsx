@@ -57,7 +57,7 @@ function Account() {
   // WRITE THE DATA IN REALTIME DATABASE
   const writeToDatabase = () => {
     const uidd = uid();
-    if (input == "") return;
+    if (input === "") return;
     set(ref(db, `/${auth.currentUser.uid}/${uidd}`), {
       completed: false,
       todo: input,
@@ -138,16 +138,16 @@ function Account() {
           setTodos([]);
           const data = snapshot.val();
           if (data !== null) {
-            Object.values(data).map((todo) => {
-              setTodos((oldArray) => [...oldArray, todo]);
-            });
+            Object.values(data).map((todo) =>
+              setTodos((oldArray) => [...oldArray, todo])
+            );
           }
         });
       } else if (!user) {
         navigate("/");
       }
     });
-  }, []);
+  }, [navigate]);
 
   return (
     <motion.div
@@ -271,4 +271,3 @@ function Account() {
 }
 
 export default Account;
-

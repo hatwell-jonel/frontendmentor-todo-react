@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
@@ -9,7 +8,6 @@ import { useAuth } from "../../AuthContext";
 
 function Signup() {
   const { createUser } = useAuth();
-  const navigate = useNavigate();
   const [error, setEror] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -38,7 +36,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (conpassword == "" || conpassword == null) return;
+    if (conpassword === "" || !conpassword) return;
     validation();
     createUser(username, email, password);
   };

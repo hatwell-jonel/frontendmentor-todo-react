@@ -31,7 +31,7 @@ function Login() {
     if (user != null) {
       navigate("/account");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   // ANIMATION
   const variants = {
