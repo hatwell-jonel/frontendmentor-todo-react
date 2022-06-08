@@ -8,6 +8,7 @@ import { uid } from "uid";
 import { set, ref, onValue, remove } from "firebase/database";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { VscTriangleDown } from "react-icons/vsc";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
 function Account() {
   const { logout, deleteAccount, user } = useAuth();
@@ -158,10 +159,15 @@ function Account() {
 
           <div className={`${modal ? "modal" : "modal-close"}`}>
             <div className="modal_box">
-              <p>
-                After you have deleted this account, it will be permanently
-                <strong> deleted</strong>. Accounts cannot be recovered
-              </p>
+              <div className="text_content">
+                <div className="text_content-icon">
+                  <BsExclamationTriangleFill id="danger-icon" />
+                </div>
+                <p>
+                  After you have deleted this account, it will be permanently
+                  <strong> deleted</strong>. Account cannot be recovered.
+                </p>
+              </div>
               <div className="modal_button">
                 <button className="modal_button-no" onClick={handleModal}>
                   No

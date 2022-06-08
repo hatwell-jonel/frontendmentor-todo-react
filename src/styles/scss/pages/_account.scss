@@ -408,7 +408,21 @@
     letter-spacing: 1px;
 
     .text_content {
-      background-color: red;
+      display: flex;
+      gap: 0.5rem;
+      &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        #danger-icon {
+          font-size: 3rem;
+          color: red;
+        }
+      }
+      p {
+        flex: 1;
+        text-align: center;
+      }
     }
 
     .modal_button {
@@ -416,10 +430,16 @@
       margin-top: 5px;
 
       button {
+        background-color: transparent;
         cursor: pointer;
         flex: 1;
         font-size: 1rem;
         padding: 0.3rem;
+
+        &:hover {
+          background-color: red;
+          color: white;
+        }
       }
     }
   }

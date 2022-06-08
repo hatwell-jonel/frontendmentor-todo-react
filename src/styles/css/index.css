@@ -690,17 +690,36 @@ button,
   letter-spacing: 1px;
 }
 .modal_box .text_content {
-  background-color: red;
+  display: flex;
+  gap: 0.5rem;
+}
+.modal_box .text_content-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_box .text_content-icon #danger-icon {
+  font-size: 3rem;
+  color: red;
+}
+.modal_box .text_content p {
+  flex: 1;
+  text-align: center;
 }
 .modal_box .modal_button {
   display: flex;
   margin-top: 5px;
 }
 .modal_box .modal_button button {
+  background-color: transparent;
   cursor: pointer;
   flex: 1;
   font-size: 1rem;
   padding: 0.3rem;
+}
+.modal_box .modal_button button:hover {
+  background-color: red;
+  color: white;
 }
 
 .modal-close {
