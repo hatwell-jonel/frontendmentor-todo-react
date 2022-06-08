@@ -27,6 +27,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 ### Built with
 
 - Mobile-first workflow
+- SCSS (CSS pre-processor)
 - [React](https://reactjs.org/) - JS library
 - [Firebase](https://firebase.google.com/) - For saving data
 
