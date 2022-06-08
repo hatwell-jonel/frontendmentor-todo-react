@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
@@ -9,7 +9,6 @@ function Login() {
   const { googleSignIn, user, emailAndPasswordSignIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -39,7 +38,7 @@ function Login() {
     hidden: { opacity: 0 },
   };
 
-  if (user) return navigate("/account");
+  if (user) return <Navigate to="/account" />;
   return (
     <>
       <motion.div
