@@ -128,26 +128,30 @@ function Account() {
     hidden: { opacity: 0 },
   };
 
+  // *****************************************************************************************************
+  // ******** no longer need because the router does not load this component without a user *************
+  // ****************************************************************************************************
+  
   // CHECK IF THERES A USER
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        // read data
-        const userRef = ref(db, `/${auth.currentUser.uid}`);
-        onValue(userRef, (snapshot) => {
-          setTodos([]);
-          const data = snapshot.val();
-          if (data !== null) {
-            Object.values(data).map((todo) =>
-              setTodos((oldArray) => [...oldArray, todo])
-            );
-          }
-        });
-      } else if (!user) {
-        navigate("/");
-      }
-    });
-  }, [navigate]);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       // read data
+  //       const userRef = ref(db, `/${auth.currentUser.uid}`);
+  //       onValue(userRef, (snapshot) => {
+  //         setTodos([]);
+  //         const data = snapshot.val();
+  //         if (data !== null) {
+  //           Object.values(data).map((todo) =>
+  //             setTodos((oldArray) => [...oldArray, todo])
+  //           );
+  //         }
+  //       });
+  //     } else if (!user) {
+  //       navigate("/");
+  //     }
+  //   });
+  // }, [navigate]);
 
   return (
     <motion.div
