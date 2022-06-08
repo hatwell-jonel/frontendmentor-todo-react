@@ -14,7 +14,7 @@ function Account() {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("");
   const [dropdown, setDropdown] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -45,6 +45,7 @@ function Account() {
   const handleSubmit = (e) => {
     e.preventDefault();
     writeToDatabase();
+    handleFilter();
   };
 
   // write database
@@ -59,35 +60,32 @@ function Account() {
     setInput("");
   };
 
-  const handleFilter = (e) => {
-    setFilter(e.target.value);
-    console.log(filter);
+  const handleFilter = () => {
     const todo_item = document.querySelectorAll(".todo_item");
-
-    // if (filter === "all") {
-    //   todo_item.forEach((item) => {
-    //     item.style.display = "flex";
-    //     console.log("all");
-    //   });
-    // } else if (filter === "active") {
-    //   todo_item.forEach((item) => {
-    //     if (item.classList.contains("todo_item--done")) {
-    //       item.style.display = "none";
-    //       console.log("active");
-    //     } else {
-    //       item.style.display = "flex";
-    //     }
-    //   });
-    // } else if (filter === "completed") {
-    //   todo_item.forEach((item) => {
-    //     if (item.classList.contains("todo_item--done")) {
-    //       item.style.display = "flex";
-    //       console.log("completed");
-    //     } else {
-    //       item.style.display = "none";
-    //     }
-    //   });
-    // }
+    if (filter === "all") {
+      todo_item.forEach((item) => {
+        item.style.display = "flex";
+        console.log("all");
+      });
+    } else if (filter === "active") {
+      todo_item.forEach((item) => {
+        if (item.classList.contains("todo_item--done")) {
+          item.style.display = "none";
+          console.log("active");
+        } else {
+          item.style.display = "flex";
+        }
+      });
+    } else if (filter === "completed") {
+      todo_item.forEach((item) => {
+        if (item.classList.contains("todo_item--done")) {
+          item.style.display = "flex";
+          console.log("completed");
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
   };
 
   const itemsLeft = () => {
@@ -216,7 +214,7 @@ function Account() {
                 type="submit"
                 value="all"
                 className={`filter ${filter === "all" ? "selected" : null}`}
-                onClick={(e) => handleFilter(e)}
+                onClick={(e) => setFilter(e.target.value)}
               >
                 all
               </button>
@@ -224,7 +222,7 @@ function Account() {
                 type="submit"
                 value="active"
                 className={`filter ${filter === "active" ? "selected" : null}`}
-                onClick={(e) => handleFilter(e)}
+                onClick={(e) => setFilter(e.target.value)}
               >
                 active
               </button>
@@ -234,7 +232,7 @@ function Account() {
                 className={`filter ${
                   filter === "completed" ? "selected" : null
                 }`}
-                onClick={(e) => handleFilter(e)}
+                onClick={(e) => setFilter(e.target.value)}
               >
                 completed
               </button>

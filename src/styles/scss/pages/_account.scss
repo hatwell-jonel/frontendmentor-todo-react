@@ -407,6 +407,10 @@
     word-spacing: 1px;
     letter-spacing: 1px;
 
+    .text_content {
+      background-color: red;
+    }
+
     .modal_button {
       display: flex;
       margin-top: 5px;

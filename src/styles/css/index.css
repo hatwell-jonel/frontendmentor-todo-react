@@ -689,6 +689,9 @@ button,
   word-spacing: 1px;
   letter-spacing: 1px;
 }
+.modal_box .text_content {
+  background-color: red;
+}
 .modal_box .modal_button {
   display: flex;
   margin-top: 5px;
