@@ -1,5 +1,5 @@
 import { useAuth } from "../../AuthContext";
-import { Navigate, Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 // const Protected = ({ children }) => {
 //   const { user } = useAuth();
@@ -9,21 +9,16 @@ import { Navigate, Route } from "react-router-dom";
 
 //   return children;
 // };
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { currentUser } = useAuth();
+export default function PrivateRoute({ component: Component, ...rest }) {
+  const { user } = useAuth();
+
   return (
     <Route
       {...rest}
-      render={({ location }) => {
-        // allow user to go to the component only if logged in, if not logged in get redirected to the login page
-        // We totally block access to the page if the user is not logged in
-        // can also write the logic this way
-        // if(currentUser) return <Component />
-        // else if(!currentUser) return <Navigate to="/" />
-        return currentUser ? <Component {...location} /> : <Navigate to="/" />;
+      render={(props) => {
+        //  this means if(user != null) return <Component /> else return <Redirect />
+        return user ? <Component {...props} /> : <Redirect to="/login" />;
       }}
-    />
+    ></Route>
   );
-};
-
-export default PrivateRoute;
+}

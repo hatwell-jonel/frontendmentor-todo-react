@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthContextProvider } from "./AuthContext";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import Account from "./Pages/Account/Account";
@@ -28,20 +28,20 @@ function App() {
     //     </Routes>
     //   </BrowserRouter>
     // </AuthContextProvider>
-    <AuthContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthContextProvider>
         <Header />
-        <Routes>
+        <Switch>
           <PrivateRoute exact path="/" component={Account} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthContextProvider>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+        </Switch>
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 }
 
-// the Account page cannot be accessed by a user who is not logged in, 
+// the Account page cannot be accessed by a user who is not logged in,
 // if the user trys to go there the router will redirect them to the login page
 // this means you can remove all logic related to checking if the user is logged in from your other components
 
