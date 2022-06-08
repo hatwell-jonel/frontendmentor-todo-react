@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 function Login() {
-  const { googleSignIn, user, emailAndPasswordSignIn } = useAuth();
+  const { googleSignIn, emailAndPasswordSignIn, user } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -18,20 +18,22 @@ function Login() {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+  
+  // dont need this you already created a login function in your AuthContext, no need to write it twice
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await googleSignIn();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     await googleSignIn();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (user != null) {
-      navigate("/account");
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user != null) {
+  //     navigate("/account");
+  //   }
+  // }, [user, navigate]);
 
   // ANIMATION
   const variants = {
@@ -39,6 +41,7 @@ function Login() {
     hidden: { opacity: 0 },
   };
 
+  if (user) return <Redirect to="/" />;
   return (
     <>
       <motion.div
@@ -86,7 +89,7 @@ function Login() {
             <div className="login_with">
               <button
                 className="login_with-btn google_btn"
-                onClick={handleGoogleSignIn}
+                onClick={googleSignIn}
               >
                 <FcGoogle className="icon" />
                 Google

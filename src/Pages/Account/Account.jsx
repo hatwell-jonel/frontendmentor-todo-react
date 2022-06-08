@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Todoitem from "./Todoitem";
 import { useAuth } from "../../AuthContext";
-import { auth, db } from "../../firebase";
+import { db } from "../../firebase";
 import { motion } from "framer-motion";
 import { uid } from "uid";
 import { set, ref, onValue, remove } from "firebase/database";
@@ -12,7 +12,7 @@ import { BsExclamationTriangleFill } from "react-icons/bs";
 
 function Account() {
   const { logout, deleteAccount, user } = useAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("");
@@ -58,7 +58,7 @@ function Account() {
   const writeToDatabase = () => {
     const uidd = uid();
     if (input === "") return;
-    set(ref(db, `/${auth.currentUser.uid}/${uidd}`), {
+    set(ref(db, `/${user.uid}/${uidd}`), {
       completed: false,
       todo: input,
       id: uidd,
@@ -105,8 +105,8 @@ function Account() {
   const clearAllCompleted = (todos) => {
     todos.forEach((todo) =>
       todo.completed
-        ? remove(ref(db, `/${auth.currentUser.uid}/${todo.id}`)).catch(
-            (error) => console.error(error)
+        ? remove(ref(db, `/${user.uid}/${todo.id}`)).catch((error) =>
+            console.error(error)
           )
         : null
     );
@@ -128,26 +128,50 @@ function Account() {
     hidden: { opacity: 0 },
   };
 
+  // *****************************************************************************************************
+  // ******** no longer need to check for user because the router does not load this component without a user *************
+  // ****************************************************************************************************
+
   // CHECK IF THERES A USER
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       // read data
+  //       const userRef = ref(db, `/${user.uid}`);
+  //       onValue(userRef, (snapshot) => {
+  //         setTodos([]);
+  //         const data = snapshot.val();
+  //         if (data !== null) {
+  //           Object.values(data).map((todo) =>
+  //             setTodos((oldArray) => [...oldArray, todo])
+  //           );
+  //         }
+  //       });
+  //     } else if (!user) {
+  //       navigate("/");
+  //     }
+  //   });
+  // }, [navigate]);
+
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        // read data
-        const userRef = ref(db, `/${auth.currentUser.uid}`);
-        onValue(userRef, (snapshot) => {
-          setTodos([]);
-          const data = snapshot.val();
-          if (data !== null) {
-            Object.values(data).map((todo) =>
-              setTodos((oldArray) => [...oldArray, todo])
-            );
-          }
-        });
-      } else if (!user) {
-        navigate("/");
+    const userRef = ref(db, `/${user.uid}`);
+    const unsubscribe = onValue(userRef, (snapshot) => {
+      setTodos([]);
+      const data = snapshot.val();
+      if (data !== null) {
+        Object.values(data).map((todo) =>
+          setTodos((oldArray) => [...oldArray, todo])
+        );
       }
     });
-  }, [navigate]);
+    // onValue attatches to this Page and listens for database changes
+    // if you change pages or refresh you will still be listening for changes on this page that no longer exists.
+    // every time you refresh you will keep creating new listeners, you could even have hundreds of pointless listeners here
+    // if you return a function in useEffect it will remove it when you unmount this component
+    // so thats why I returned the onValue function you created, it will undo the listener when this componenet stops existing
+    // it works for any function in useEffect
+    return unsubscribe;
+  }, [user]);
 
   return (
     <motion.div
