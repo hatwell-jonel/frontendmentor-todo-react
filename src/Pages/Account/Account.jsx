@@ -19,10 +19,19 @@ function Account() {
   const [dropdown, setDropdown] = useState(false);
   const [modal, setModal] = useState(false);
 
+  // SUBMIT FORM
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    writeToDatabase();
+    handleFilter();
+  };
+
+  // DELETE THE ACCOUNT OF CURRENT USER
   const deleteCurrentUser = () => {
     deleteAccount();
   };
 
+  // DRAG TODO ITEMS
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
     const items = Array.from(todos);
@@ -31,6 +40,7 @@ function Account() {
     setTodos(items);
   };
 
+  // SIGNOUT THE CURRENT USER
   const handleSignOut = async () => {
     try {
       await logout();
@@ -39,17 +49,12 @@ function Account() {
     }
   };
 
+  // GET THE VALUE OF INPUTED TEXT IN TODO INPUT
   const inputTodo = (e) => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    writeToDatabase();
-    handleFilter();
-  };
-
-  // write database
+  // WRITE THE DATA IN REALTIME DATABASE
   const writeToDatabase = () => {
     const uidd = uid();
     if (input == "") return;
@@ -61,6 +66,7 @@ function Account() {
     setInput("");
   };
 
+  //  FILTER TODOS
   const handleFilter = () => {
     const todo_item = document.querySelectorAll(".todo_item");
     if (filter === "all") {
@@ -89,11 +95,13 @@ function Account() {
     }
   };
 
+  // COUNT THE ACTIVE TODO
   const itemsLeft = () => {
     let size = todos.reduce((a, b) => a + (b.completed !== true), 0);
     return size;
   };
 
+  // DELETE ALL COMPLETED TODO
   const clearAllCompleted = (todos) => {
     todos.forEach((todo) =>
       todo.completed
@@ -104,6 +112,23 @@ function Account() {
     );
   };
 
+  // DROPDOWN
+  const handleDropdown = () => {
+    setDropdown(!dropdown);
+  };
+
+  // MODAL
+  const handleModal = () => {
+    setModal(!modal);
+  };
+
+  // ANIMATION
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
+  // CHECK IF THERES A USER
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -123,20 +148,6 @@ function Account() {
       }
     });
   }, []);
-
-  const handleDropdown = () => {
-    setDropdown(!dropdown);
-  };
-
-  const handleModal = () => {
-    setModal(!modal);
-  };
-
-  // ANIMATION
-  const variants = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 },
-  };
 
   return (
     <motion.div
@@ -261,4 +272,3 @@ function Account() {
 
 export default Account;
 
-// https://www.youtube.com/watch?v=aYZRRyukuIw&t=60s

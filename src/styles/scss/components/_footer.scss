@@ -1,0 +1,15 @@
+.footer {
+  min-width: 300px;
+  position: absolute;
+  background-color: transparent;
+  width: 100%;
+  bottom: 0rem;
+  padding: 0.5rem 0rem;
+  text-align: center;
+  font-size: 0.86rem;
+  color: $clr-white-100;
+
+  a {
+    color: $clr-bright-blue;
+  }
+}

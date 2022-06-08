@@ -237,6 +237,9 @@ button,
   font-size: 1rem;
   color: #25273c;
 }
+.light-theme .footer {
+  color: #161722;
+}
 
 .header {
   min-width: 300px;
@@ -281,6 +284,21 @@ button,
 .header .container .theme-btn span {
   font-size: 0.7rem;
   margin-left: 4px;
+}
+
+.footer {
+  min-width: 300px;
+  position: absolute;
+  background-color: transparent;
+  width: 100%;
+  bottom: 0rem;
+  padding: 0.5rem 0rem;
+  text-align: center;
+  font-size: 0.86rem;
+  color: #fafafa;
+}
+.footer a {
+  color: #3a7bfd;
 }
 
 .authentication {
