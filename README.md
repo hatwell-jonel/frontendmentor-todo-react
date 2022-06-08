@@ -21,7 +21,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 
 ### Links
 
-- Solution URL: [Click Here](https://your-solution-url.com)
+- Solution URL: [Click Here](https://www.frontendmentor.io/solutions/fireabase-reactjs-sass-google-signin-30W3q1odhF)
 - Live Site URL: [Click Here](https://todo-app-d8fd5.web.app/)
 
 ### Built with
