@@ -38,6 +38,7 @@ function Signup() {
     e.preventDefault();
     if (conpassword === "" || !conpassword) return;
     validation();
+    // send the user to the login page after creating an account
     createUser(username, email, password);
   };
 

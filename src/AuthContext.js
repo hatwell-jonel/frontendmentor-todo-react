@@ -2,6 +2,7 @@ import { useContext, createContext, useEffect, useState } from "react";
 import { auth } from "./firebase";
 import {
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
@@ -10,11 +11,13 @@ import {
   updateProfile,
   deleteUser,
 } from "firebase/auth";
+import { useHistory } from "react-router-dom";
+
 const AuthContext = createContext();
-const provider = new GoogleAuthProvider();
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
+  const history = useHistory();
 
   // delete user
   const deleteAccount = () => {
@@ -27,14 +30,27 @@ export function AuthContextProvider({ children }) {
       });
   };
 
-  // signin using google account
-  const googleSignIn = () => {
+  // Refactored login function so it can be used with any login provider
+
+  const login = (provider) => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const userInfo = result.user;
         setUser(userInfo);
       })
       .catch((error) => console.error(error));
+  };
+
+  // signin using google account
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    return login(provider);
+  };
+
+  // signin using facebook account
+  const facebookSignIn = () => {
+    const provider = new FacebookAuthProvider();
+    return login(provider);
   };
 
   // register user with email and password
@@ -47,7 +63,11 @@ export function AuthContextProvider({ children }) {
       );
       await updateProfile(user, {
         displayName: username,
-      }).then(alert("Your Account is now registered. Please Sign In."));
+      }).then(() => {
+        // redirect the user to the login page when the account is created
+        alert("Your account was created! Please login");
+        history.push("/");
+      });
 
       if (user) {
         signOut(auth);
@@ -68,12 +88,12 @@ export function AuthContextProvider({ children }) {
   };
 
   useEffect(() => {
-    const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
 
     return () => {
-      unsubcribe();
+      unsubscribe();
     };
   }, []);
 
@@ -81,6 +101,7 @@ export function AuthContextProvider({ children }) {
     <AuthContext.Provider
       value={{
         googleSignIn,
+        facebookSignIn,
         logout,
         createUser,
         emailAndPasswordSignIn,

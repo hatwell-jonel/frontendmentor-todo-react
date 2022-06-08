@@ -18,14 +18,16 @@ function Login() {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+  
+  // dont need this you already created a login function in your AuthContext, no need to write it twice
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await googleSignIn();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     await googleSignIn();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   // useEffect(() => {
   //   if (user != null) {
@@ -87,7 +89,7 @@ function Login() {
             <div className="login_with">
               <button
                 className="login_with-btn google_btn"
-                onClick={handleGoogleSignIn}
+                onClick={googleSignIn}
               >
                 <FcGoogle className="icon" />
                 Google

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 import Todoitem from "./Todoitem";
 import { useAuth } from "../../AuthContext";
-import { auth, db } from "../../firebase";
+import { db } from "../../firebase";
 import { motion } from "framer-motion";
 import { uid } from "uid";
 import { set, ref, onValue, remove } from "firebase/database";
@@ -58,7 +58,7 @@ function Account() {
   const writeToDatabase = () => {
     const uidd = uid();
     if (input === "") return;
-    set(ref(db, `/${auth.currentUser.uid}/${uidd}`), {
+    set(ref(db, `/${user.uid}/${uidd}`), {
       completed: false,
       todo: input,
       id: uidd,
@@ -105,8 +105,8 @@ function Account() {
   const clearAllCompleted = (todos) => {
     todos.forEach((todo) =>
       todo.completed
-        ? remove(ref(db, `/${auth.currentUser.uid}/${todo.id}`)).catch(
-            (error) => console.error(error)
+        ? remove(ref(db, `/${user.uid}/${todo.id}`)).catch((error) =>
+            console.error(error)
           )
         : null
     );
@@ -137,7 +137,7 @@ function Account() {
   //   auth.onAuthStateChanged((user) => {
   //     if (user) {
   //       // read data
-  //       const userRef = ref(db, `/${auth.currentUser.uid}`);
+  //       const userRef = ref(db, `/${user.uid}`);
   //       onValue(userRef, (snapshot) => {
   //         setTodos([]);
   //         const data = snapshot.val();
@@ -154,7 +154,7 @@ function Account() {
   // }, [navigate]);
 
   useEffect(() => {
-    const userRef = ref(db, `/${auth.currentUser.uid}`);
+    const userRef = ref(db, `/${user.uid}`);
     const unsubscribe = onValue(userRef, (snapshot) => {
       setTodos([]);
       const data = snapshot.val();
@@ -171,7 +171,7 @@ function Account() {
     // so thats why I returned the onValue function you created, it will undo the listener when this componenet stops existing
     // it works for any function in useEffect
     return unsubscribe;
-  }, []);
+  }, [user]);
 
   return (
     <motion.div
